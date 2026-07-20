@@ -1,0 +1,7 @@
+{
+  "ok": true,
+  "visual_qa": "pass",
+  "reviewed_by": "independent_standard_visual_worker",
+  "note": "All nine rows preserve Kkachi's 3D-toy identity and palette, with stable scale, clear state-specific motion, alternating directional gaits, and no clipping, guide marks, overlap, or forbidden effects.",
+  "repair_rows": []
+}
