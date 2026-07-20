@@ -1,0 +1,33 @@
+{
+  "ok": true,
+  "visual_qa": "pass",
+  "reviewed_by": "independent_final_visual_worker",
+  "qa_note": "Kkachi preserves identity and clean transparency throughout; all cardinals are unmistakable, diagonals remain in quadrant, and no visible reversal, clipping, seam, guide mark, detached effect, or hard continuity break remains.",
+  "direction_verdicts": {
+    "000": "pass",
+    "022.5": "warning",
+    "045": "pass",
+    "067.5": "pass",
+    "090": "pass",
+    "112.5": "pass",
+    "135": "pass",
+    "157.5": "pass",
+    "180": "pass",
+    "202.5": "pass",
+    "225": "pass",
+    "247.5": "pass",
+    "270": "pass",
+    "292.5": "warning",
+    "315": "pass",
+    "337.5": "warning"
+  },
+  "review_warnings": [
+    "022.5 has a subtle rightward cue but reads up-right in sequence.",
+    "292.5 has a subtle upward cue but transitions coherently from left toward up-left.",
+    "337.5 has a subtle leftward cue near the up cardinal.",
+    "Flagged boundaries show expected pose progression without visible snap, scale pop, registration jump, or identity change.",
+    "Lower gaps are intentional negative space around feet, legs, and tail."
+  ],
+  "repair_rows": [],
+  "repair_notes": null
+}

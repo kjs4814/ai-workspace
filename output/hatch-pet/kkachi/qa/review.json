@@ -1,0 +1,973 @@
+{
+  "ok": true,
+  "frames_root": "/Users/jason0706.kim/ai-workspace/output/hatch-pet/kkachi/frames",
+  "states": [
+    "idle",
+    "running-right",
+    "running-left",
+    "waving",
+    "jumping",
+    "failed",
+    "waiting",
+    "running",
+    "review"
+  ],
+  "errors": [],
+  "warnings": [],
+  "rows": [
+    {
+      "state": "idle",
+      "expected_frames": 6,
+      "actual_frames": 6,
+      "extraction_method": "components",
+      "ok": true,
+      "errors": [],
+      "warnings": [],
+      "frames": [
+        {
+          "index": 0,
+          "file": "/Users/jason0706.kim/ai-workspace/output/hatch-pet/kkachi/frames/idle/00.png",
+          "width": 192,
+          "height": 208,
+          "nontransparent_pixels": 18989,
+          "bbox": [
+            23,
+            5,
+            169,
+            203
+          ],
+          "edge_pixels": 0,
+          "chroma_adjacent_pixels": 196
+        },
+        {
+          "index": 1,
+          "file": "/Users/jason0706.kim/ai-workspace/output/hatch-pet/kkachi/frames/idle/01.png",
+          "width": 192,
+          "height": 208,
+          "nontransparent_pixels": 18849,
+          "bbox": [
+            23,
+            5,
+            168,
+            203
+          ],
+          "edge_pixels": 0,
+          "chroma_adjacent_pixels": 184
+        },
+        {
+          "index": 2,
+          "file": "/Users/jason0706.kim/ai-workspace/output/hatch-pet/kkachi/frames/idle/02.png",
+          "width": 192,
+          "height": 208,
+          "nontransparent_pixels": 18995,
+          "bbox": [
+            23,
+            5,
+            168,
+            203
+          ],
+          "edge_pixels": 0,
+          "chroma_adjacent_pixels": 179
+        },
+        {
+          "index": 3,
+          "file": "/Users/jason0706.kim/ai-workspace/output/hatch-pet/kkachi/frames/idle/03.png",
+          "width": 192,
+          "height": 208,
+          "nontransparent_pixels": 18933,
+          "bbox": [
+            23,
+            5,
+            168,
+            203
+          ],
+          "edge_pixels": 0,
+          "chroma_adjacent_pixels": 189
+        },
+        {
+          "index": 4,
+          "file": "/Users/jason0706.kim/ai-workspace/output/hatch-pet/kkachi/frames/idle/04.png",
+          "width": 192,
+          "height": 208,
+          "nontransparent_pixels": 18839,
+          "bbox": [
+            23,
+            5,
+            168,
+            203
+          ],
+          "edge_pixels": 0,
+          "chroma_adjacent_pixels": 181
+        },
+        {
+          "index": 5,
+          "file": "/Users/jason0706.kim/ai-workspace/output/hatch-pet/kkachi/frames/idle/05.png",
+          "width": 192,
+          "height": 208,
+          "nontransparent_pixels": 18660,
+          "bbox": [
+            24,
+            5,
+            168,
+            203
+          ],
+          "edge_pixels": 0,
+          "chroma_adjacent_pixels": 204
+        }
+      ]
+    },
+    {
+      "state": "running-right",
+      "expected_frames": 8,
+      "actual_frames": 8,
+      "extraction_method": "components",
+      "ok": true,
+      "errors": [],
+      "warnings": [],
+      "frames": [
+        {
+          "index": 0,
+          "file": "/Users/jason0706.kim/ai-workspace/output/hatch-pet/kkachi/frames/running-right/00.png",
+          "width": 192,
+          "height": 208,
+          "nontransparent_pixels": 17264,
+          "bbox": [
+            5,
+            17,
+            187,
+            191
+          ],
+          "edge_pixels": 0,
+          "chroma_adjacent_pixels": 311
+        },
+        {
+          "index": 1,
+          "file": "/Users/jason0706.kim/ai-workspace/output/hatch-pet/kkachi/frames/running-right/01.png",
+          "width": 192,
+          "height": 208,
+          "nontransparent_pixels": 16967,
+          "bbox": [
+            5,
+            15,
+            187,
+            193
+          ],
+          "edge_pixels": 0,
+          "chroma_adjacent_pixels": 305
+        },
+        {
+          "index": 2,
+          "file": "/Users/jason0706.kim/ai-workspace/output/hatch-pet/kkachi/frames/running-right/02.png",
+          "width": 192,
+          "height": 208,
+          "nontransparent_pixels": 18713,
+          "bbox": [
+            8,
+            5,
+            184,
+            203
+          ],
+          "edge_pixels": 0,
+          "chroma_adjacent_pixels": 369
+        },
+        {
+          "index": 3,
+          "file": "/Users/jason0706.kim/ai-workspace/output/hatch-pet/kkachi/frames/running-right/03.png",
+          "width": 192,
+          "height": 208,
+          "nontransparent_pixels": 17727,
+          "bbox": [
+            5,
+            13,
+            187,
+            195
+          ],
+          "edge_pixels": 0,
+          "chroma_adjacent_pixels": 313
+        },
+        {
+          "index": 4,
+          "file": "/Users/jason0706.kim/ai-workspace/output/hatch-pet/kkachi/frames/running-right/04.png",
+          "width": 192,
+          "height": 208,
+          "nontransparent_pixels": 14555,
+          "bbox": [
+            5,
+            33,
+            187,
+            174
+          ],
+          "edge_pixels": 0,
+          "chroma_adjacent_pixels": 271
+        },
+        {
+          "index": 5,
+          "file": "/Users/jason0706.kim/ai-workspace/output/hatch-pet/kkachi/frames/running-right/05.png",
+          "width": 192,
+          "height": 208,
+          "nontransparent_pixels": 18630,
+          "bbox": [
+            9,
+            5,
+            182,
+            203
+          ],
+          "edge_pixels": 0,
+          "chroma_adjacent_pixels": 326
+        },
+        {
+          "index": 6,
+          "file": "/Users/jason0706.kim/ai-workspace/output/hatch-pet/kkachi/frames/running-right/06.png",
+          "width": 192,
+          "height": 208,
+          "nontransparent_pixels": 17948,
+          "bbox": [
+            15,
+            5,
+            177,
+            203
+          ],
+          "edge_pixels": 0,
+          "chroma_adjacent_pixels": 323
+        },
+        {
+          "index": 7,
+          "file": "/Users/jason0706.kim/ai-workspace/output/hatch-pet/kkachi/frames/running-right/07.png",
+          "width": 192,
+          "height": 208,
+          "nontransparent_pixels": 20042,
+          "bbox": [
+            6,
+            5,
+            185,
+            203
+          ],
+          "edge_pixels": 0,
+          "chroma_adjacent_pixels": 355
+        }
+      ]
+    },
+    {
+      "state": "running-left",
+      "expected_frames": 8,
+      "actual_frames": 8,
+      "extraction_method": "components",
+      "ok": true,
+      "errors": [],
+      "warnings": [],
+      "frames": [
+        {
+          "index": 0,
+          "file": "/Users/jason0706.kim/ai-workspace/output/hatch-pet/kkachi/frames/running-left/00.png",
+          "width": 192,
+          "height": 208,
+          "nontransparent_pixels": 15765,
+          "bbox": [
+            5,
+            21,
+            187,
+            186
+          ],
+          "edge_pixels": 0,
+          "chroma_adjacent_pixels": 338
+        },
+        {
+          "index": 1,
+          "file": "/Users/jason0706.kim/ai-workspace/output/hatch-pet/kkachi/frames/running-left/01.png",
+          "width": 192,
+          "height": 208,
+          "nontransparent_pixels": 16359,
+          "bbox": [
+            5,
+            18,
+            187,
+            190
+          ],
+          "edge_pixels": 0,
+          "chroma_adjacent_pixels": 311
+        },
+        {
+          "index": 2,
+          "file": "/Users/jason0706.kim/ai-workspace/output/hatch-pet/kkachi/frames/running-left/02.png",
+          "width": 192,
+          "height": 208,
+          "nontransparent_pixels": 16644,
+          "bbox": [
+            5,
+            17,
+            187,
+            190
+          ],
+          "edge_pixels": 0,
+          "chroma_adjacent_pixels": 348
+        },
+        {
+          "index": 3,
+          "file": "/Users/jason0706.kim/ai-workspace/output/hatch-pet/kkachi/frames/running-left/03.png",
+          "width": 192,
+          "height": 208,
+          "nontransparent_pixels": 16350,
+          "bbox": [
+            5,
+            20,
+            187,
+            188
+          ],
+          "edge_pixels": 0,
+          "chroma_adjacent_pixels": 328
+        },
+        {
+          "index": 4,
+          "file": "/Users/jason0706.kim/ai-workspace/output/hatch-pet/kkachi/frames/running-left/04.png",
+          "width": 192,
+          "height": 208,
+          "nontransparent_pixels": 17862,
+          "bbox": [
+            5,
+            13,
+            187,
+            195
+          ],
+          "edge_pixels": 0,
+          "chroma_adjacent_pixels": 355
+        },
+        {
+          "index": 5,
+          "file": "/Users/jason0706.kim/ai-workspace/output/hatch-pet/kkachi/frames/running-left/05.png",
+          "width": 192,
+          "height": 208,
+          "nontransparent_pixels": 18316,
+          "bbox": [
+            5,
+            10,
+            187,
+            197
+          ],
+          "edge_pixels": 0,
+          "chroma_adjacent_pixels": 354
+        },
+        {
+          "index": 6,
+          "file": "/Users/jason0706.kim/ai-workspace/output/hatch-pet/kkachi/frames/running-left/06.png",
+          "width": 192,
+          "height": 208,
+          "nontransparent_pixels": 17710,
+          "bbox": [
+            5,
+            15,
+            187,
+            192
+          ],
+          "edge_pixels": 0,
+          "chroma_adjacent_pixels": 343
+        },
+        {
+          "index": 7,
+          "file": "/Users/jason0706.kim/ai-workspace/output/hatch-pet/kkachi/frames/running-left/07.png",
+          "width": 192,
+          "height": 208,
+          "nontransparent_pixels": 18877,
+          "bbox": [
+            5,
+            9,
+            187,
+            198
+          ],
+          "edge_pixels": 0,
+          "chroma_adjacent_pixels": 357
+        }
+      ]
+    },
+    {
+      "state": "waving",
+      "expected_frames": 4,
+      "actual_frames": 4,
+      "extraction_method": "components",
+      "ok": true,
+      "errors": [],
+      "warnings": [],
+      "frames": [
+        {
+          "index": 0,
+          "file": "/Users/jason0706.kim/ai-workspace/output/hatch-pet/kkachi/frames/waving/00.png",
+          "width": 192,
+          "height": 208,
+          "nontransparent_pixels": 18800,
+          "bbox": [
+            23,
+            5,
+            168,
+            203
+          ],
+          "edge_pixels": 0,
+          "chroma_adjacent_pixels": 145
+        },
+        {
+          "index": 1,
+          "file": "/Users/jason0706.kim/ai-workspace/output/hatch-pet/kkachi/frames/waving/01.png",
+          "width": 192,
+          "height": 208,
+          "nontransparent_pixels": 21593,
+          "bbox": [
+            14,
+            5,
+            178,
+            203
+          ],
+          "edge_pixels": 0,
+          "chroma_adjacent_pixels": 176
+        },
+        {
+          "index": 2,
+          "file": "/Users/jason0706.kim/ai-workspace/output/hatch-pet/kkachi/frames/waving/02.png",
+          "width": 192,
+          "height": 208,
+          "nontransparent_pixels": 22304,
+          "bbox": [
+            10,
+            5,
+            182,
+            203
+          ],
+          "edge_pixels": 0,
+          "chroma_adjacent_pixels": 187
+        },
+        {
+          "index": 3,
+          "file": "/Users/jason0706.kim/ai-workspace/output/hatch-pet/kkachi/frames/waving/03.png",
+          "width": 192,
+          "height": 208,
+          "nontransparent_pixels": 18845,
+          "bbox": [
+            23,
+            5,
+            169,
+            203
+          ],
+          "edge_pixels": 0,
+          "chroma_adjacent_pixels": 152
+        }
+      ]
+    },
+    {
+      "state": "jumping",
+      "expected_frames": 5,
+      "actual_frames": 5,
+      "extraction_method": "components",
+      "ok": true,
+      "errors": [],
+      "warnings": [],
+      "frames": [
+        {
+          "index": 0,
+          "file": "/Users/jason0706.kim/ai-workspace/output/hatch-pet/kkachi/frames/jumping/00.png",
+          "width": 192,
+          "height": 208,
+          "nontransparent_pixels": 17551,
+          "bbox": [
+            5,
+            27,
+            187,
+            181
+          ],
+          "edge_pixels": 0,
+          "chroma_adjacent_pixels": 257
+        },
+        {
+          "index": 1,
+          "file": "/Users/jason0706.kim/ai-workspace/output/hatch-pet/kkachi/frames/jumping/01.png",
+          "width": 192,
+          "height": 208,
+          "nontransparent_pixels": 21838,
+          "bbox": [
+            7,
+            5,
+            185,
+            203
+          ],
+          "edge_pixels": 0,
+          "chroma_adjacent_pixels": 326
+        },
+        {
+          "index": 2,
+          "file": "/Users/jason0706.kim/ai-workspace/output/hatch-pet/kkachi/frames/jumping/02.png",
+          "width": 192,
+          "height": 208,
+          "nontransparent_pixels": 18381,
+          "bbox": [
+            5,
+            19,
+            187,
+            188
+          ],
+          "edge_pixels": 0,
+          "chroma_adjacent_pixels": 261
+        },
+        {
+          "index": 3,
+          "file": "/Users/jason0706.kim/ai-workspace/output/hatch-pet/kkachi/frames/jumping/03.png",
+          "width": 192,
+          "height": 208,
+          "nontransparent_pixels": 21211,
+          "bbox": [
+            8,
+            5,
+            183,
+            203
+          ],
+          "edge_pixels": 0,
+          "chroma_adjacent_pixels": 344
+        },
+        {
+          "index": 4,
+          "file": "/Users/jason0706.kim/ai-workspace/output/hatch-pet/kkachi/frames/jumping/04.png",
+          "width": 192,
+          "height": 208,
+          "nontransparent_pixels": 22187,
+          "bbox": [
+            11,
+            5,
+            180,
+            203
+          ],
+          "edge_pixels": 0,
+          "chroma_adjacent_pixels": 295
+        }
+      ]
+    },
+    {
+      "state": "failed",
+      "expected_frames": 8,
+      "actual_frames": 8,
+      "extraction_method": "components",
+      "ok": true,
+      "errors": [],
+      "warnings": [],
+      "frames": [
+        {
+          "index": 0,
+          "file": "/Users/jason0706.kim/ai-workspace/output/hatch-pet/kkachi/frames/failed/00.png",
+          "width": 192,
+          "height": 208,
+          "nontransparent_pixels": 18513,
+          "bbox": [
+            25,
+            5,
+            166,
+            203
+          ],
+          "edge_pixels": 0,
+          "chroma_adjacent_pixels": 245
+        },
+        {
+          "index": 1,
+          "file": "/Users/jason0706.kim/ai-workspace/output/hatch-pet/kkachi/frames/failed/01.png",
+          "width": 192,
+          "height": 208,
+          "nontransparent_pixels": 18841,
+          "bbox": [
+            26,
+            5,
+            166,
+            203
+          ],
+          "edge_pixels": 0,
+          "chroma_adjacent_pixels": 231
+        },
+        {
+          "index": 2,
+          "file": "/Users/jason0706.kim/ai-workspace/output/hatch-pet/kkachi/frames/failed/02.png",
+          "width": 192,
+          "height": 208,
+          "nontransparent_pixels": 19817,
+          "bbox": [
+            21,
+            5,
+            171,
+            203
+          ],
+          "edge_pixels": 0,
+          "chroma_adjacent_pixels": 262
+        },
+        {
+          "index": 3,
+          "file": "/Users/jason0706.kim/ai-workspace/output/hatch-pet/kkachi/frames/failed/03.png",
+          "width": 192,
+          "height": 208,
+          "nontransparent_pixels": 22318,
+          "bbox": [
+            16,
+            5,
+            176,
+            203
+          ],
+          "edge_pixels": 0,
+          "chroma_adjacent_pixels": 283
+        },
+        {
+          "index": 4,
+          "file": "/Users/jason0706.kim/ai-workspace/output/hatch-pet/kkachi/frames/failed/04.png",
+          "width": 192,
+          "height": 208,
+          "nontransparent_pixels": 24787,
+          "bbox": [
+            6,
+            5,
+            185,
+            203
+          ],
+          "edge_pixels": 0,
+          "chroma_adjacent_pixels": 338
+        },
+        {
+          "index": 5,
+          "file": "/Users/jason0706.kim/ai-workspace/output/hatch-pet/kkachi/frames/failed/05.png",
+          "width": 192,
+          "height": 208,
+          "nontransparent_pixels": 20349,
+          "bbox": [
+            24,
+            5,
+            167,
+            203
+          ],
+          "edge_pixels": 0,
+          "chroma_adjacent_pixels": 234
+        },
+        {
+          "index": 6,
+          "file": "/Users/jason0706.kim/ai-workspace/output/hatch-pet/kkachi/frames/failed/06.png",
+          "width": 192,
+          "height": 208,
+          "nontransparent_pixels": 18735,
+          "bbox": [
+            28,
+            5,
+            163,
+            203
+          ],
+          "edge_pixels": 0,
+          "chroma_adjacent_pixels": 245
+        },
+        {
+          "index": 7,
+          "file": "/Users/jason0706.kim/ai-workspace/output/hatch-pet/kkachi/frames/failed/07.png",
+          "width": 192,
+          "height": 208,
+          "nontransparent_pixels": 18576,
+          "bbox": [
+            25,
+            5,
+            167,
+            203
+          ],
+          "edge_pixels": 0,
+          "chroma_adjacent_pixels": 243
+        }
+      ]
+    },
+    {
+      "state": "waiting",
+      "expected_frames": 6,
+      "actual_frames": 6,
+      "extraction_method": "components",
+      "ok": true,
+      "errors": [],
+      "warnings": [],
+      "frames": [
+        {
+          "index": 0,
+          "file": "/Users/jason0706.kim/ai-workspace/output/hatch-pet/kkachi/frames/waiting/00.png",
+          "width": 192,
+          "height": 208,
+          "nontransparent_pixels": 18084,
+          "bbox": [
+            27,
+            5,
+            164,
+            203
+          ],
+          "edge_pixels": 0,
+          "chroma_adjacent_pixels": 164
+        },
+        {
+          "index": 1,
+          "file": "/Users/jason0706.kim/ai-workspace/output/hatch-pet/kkachi/frames/waiting/01.png",
+          "width": 192,
+          "height": 208,
+          "nontransparent_pixels": 20341,
+          "bbox": [
+            19,
+            5,
+            173,
+            203
+          ],
+          "edge_pixels": 0,
+          "chroma_adjacent_pixels": 197
+        },
+        {
+          "index": 2,
+          "file": "/Users/jason0706.kim/ai-workspace/output/hatch-pet/kkachi/frames/waiting/02.png",
+          "width": 192,
+          "height": 208,
+          "nontransparent_pixels": 17200,
+          "bbox": [
+            36,
+            5,
+            155,
+            203
+          ],
+          "edge_pixels": 0,
+          "chroma_adjacent_pixels": 157
+        },
+        {
+          "index": 3,
+          "file": "/Users/jason0706.kim/ai-workspace/output/hatch-pet/kkachi/frames/waiting/03.png",
+          "width": 192,
+          "height": 208,
+          "nontransparent_pixels": 20052,
+          "bbox": [
+            23,
+            5,
+            168,
+            203
+          ],
+          "edge_pixels": 0,
+          "chroma_adjacent_pixels": 219
+        },
+        {
+          "index": 4,
+          "file": "/Users/jason0706.kim/ai-workspace/output/hatch-pet/kkachi/frames/waiting/04.png",
+          "width": 192,
+          "height": 208,
+          "nontransparent_pixels": 20699,
+          "bbox": [
+            23,
+            5,
+            169,
+            203
+          ],
+          "edge_pixels": 0,
+          "chroma_adjacent_pixels": 214
+        },
+        {
+          "index": 5,
+          "file": "/Users/jason0706.kim/ai-workspace/output/hatch-pet/kkachi/frames/waiting/05.png",
+          "width": 192,
+          "height": 208,
+          "nontransparent_pixels": 18727,
+          "bbox": [
+            21,
+            5,
+            170,
+            203
+          ],
+          "edge_pixels": 0,
+          "chroma_adjacent_pixels": 199
+        }
+      ]
+    },
+    {
+      "state": "running",
+      "expected_frames": 6,
+      "actual_frames": 6,
+      "extraction_method": "components",
+      "ok": true,
+      "errors": [],
+      "warnings": [],
+      "frames": [
+        {
+          "index": 0,
+          "file": "/Users/jason0706.kim/ai-workspace/output/hatch-pet/kkachi/frames/running/00.png",
+          "width": 192,
+          "height": 208,
+          "nontransparent_pixels": 18783,
+          "bbox": [
+            24,
+            5,
+            168,
+            203
+          ],
+          "edge_pixels": 0,
+          "chroma_adjacent_pixels": 171
+        },
+        {
+          "index": 1,
+          "file": "/Users/jason0706.kim/ai-workspace/output/hatch-pet/kkachi/frames/running/01.png",
+          "width": 192,
+          "height": 208,
+          "nontransparent_pixels": 18710,
+          "bbox": [
+            24,
+            5,
+            167,
+            203
+          ],
+          "edge_pixels": 0,
+          "chroma_adjacent_pixels": 188
+        },
+        {
+          "index": 2,
+          "file": "/Users/jason0706.kim/ai-workspace/output/hatch-pet/kkachi/frames/running/02.png",
+          "width": 192,
+          "height": 208,
+          "nontransparent_pixels": 21455,
+          "bbox": [
+            19,
+            5,
+            172,
+            203
+          ],
+          "edge_pixels": 0,
+          "chroma_adjacent_pixels": 226
+        },
+        {
+          "index": 3,
+          "file": "/Users/jason0706.kim/ai-workspace/output/hatch-pet/kkachi/frames/running/03.png",
+          "width": 192,
+          "height": 208,
+          "nontransparent_pixels": 23348,
+          "bbox": [
+            11,
+            5,
+            180,
+            203
+          ],
+          "edge_pixels": 0,
+          "chroma_adjacent_pixels": 243
+        },
+        {
+          "index": 4,
+          "file": "/Users/jason0706.kim/ai-workspace/output/hatch-pet/kkachi/frames/running/04.png",
+          "width": 192,
+          "height": 208,
+          "nontransparent_pixels": 18313,
+          "bbox": [
+            26,
+            5,
+            166,
+            203
+          ],
+          "edge_pixels": 0,
+          "chroma_adjacent_pixels": 179
+        },
+        {
+          "index": 5,
+          "file": "/Users/jason0706.kim/ai-workspace/output/hatch-pet/kkachi/frames/running/05.png",
+          "width": 192,
+          "height": 208,
+          "nontransparent_pixels": 18492,
+          "bbox": [
+            25,
+            5,
+            166,
+            203
+          ],
+          "edge_pixels": 0,
+          "chroma_adjacent_pixels": 187
+        }
+      ]
+    },
+    {
+      "state": "review",
+      "expected_frames": 6,
+      "actual_frames": 6,
+      "extraction_method": "components",
+      "ok": true,
+      "errors": [],
+      "warnings": [],
+      "frames": [
+        {
+          "index": 0,
+          "file": "/Users/jason0706.kim/ai-workspace/output/hatch-pet/kkachi/frames/review/00.png",
+          "width": 192,
+          "height": 208,
+          "nontransparent_pixels": 19307,
+          "bbox": [
+            21,
+            5,
+            170,
+            203
+          ],
+          "edge_pixels": 0,
+          "chroma_adjacent_pixels": 226
+        },
+        {
+          "index": 1,
+          "file": "/Users/jason0706.kim/ai-workspace/output/hatch-pet/kkachi/frames/review/01.png",
+          "width": 192,
+          "height": 208,
+          "nontransparent_pixels": 20190,
+          "bbox": [
+            16,
+            5,
+            175,
+            203
+          ],
+          "edge_pixels": 0,
+          "chroma_adjacent_pixels": 244
+        },
+        {
+          "index": 2,
+          "file": "/Users/jason0706.kim/ai-workspace/output/hatch-pet/kkachi/frames/review/02.png",
+          "width": 192,
+          "height": 208,
+          "nontransparent_pixels": 18817,
+          "bbox": [
+            26,
+            5,
+            166,
+            203
+          ],
+          "edge_pixels": 0,
+          "chroma_adjacent_pixels": 256
+        },
+        {
+          "index": 3,
+          "file": "/Users/jason0706.kim/ai-workspace/output/hatch-pet/kkachi/frames/review/03.png",
+          "width": 192,
+          "height": 208,
+          "nontransparent_pixels": 19282,
+          "bbox": [
+            28,
+            5,
+            163,
+            203
+          ],
+          "edge_pixels": 0,
+          "chroma_adjacent_pixels": 237
+        },
+        {
+          "index": 4,
+          "file": "/Users/jason0706.kim/ai-workspace/output/hatch-pet/kkachi/frames/review/04.png",
+          "width": 192,
+          "height": 208,
+          "nontransparent_pixels": 20216,
+          "bbox": [
+            21,
+            5,
+            171,
+            203
+          ],
+          "edge_pixels": 0,
+          "chroma_adjacent_pixels": 245
+        },
+        {
+          "index": 5,
+          "file": "/Users/jason0706.kim/ai-workspace/output/hatch-pet/kkachi/frames/review/05.png",
+          "width": 192,
+          "height": 208,
+          "nontransparent_pixels": 19149,
+          "bbox": [
+            21,
+            5,
+            171,
+            203
+          ],
+          "edge_pixels": 0,
+          "chroma_adjacent_pixels": 241
+        }
+      ]
+    }
+  ]
+}

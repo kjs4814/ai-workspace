@@ -1,0 +1,12 @@
+models:
+  - name: "Midm-PRO-serving"
+    model_path: "/models"
+    service:
+      start_command:
+        - /home/work/.data_volume/run_midm_pro250_reasoning.sh
+      port: 8400
+      health_check:
+        path: "/v1/core/status/ready"
+        max_retries: 5
+        max_wait_time: 5
+        expected_status_code: 200
