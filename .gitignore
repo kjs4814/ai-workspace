@@ -1,0 +1,10 @@
+.DS_Store
+
+# Build artifacts and scratch space
+tmp/
+dist/
+**/.module-cache/
+**/node_modules/
+videokit/swift/.build/
+html_to_mp4/bin/
+ai_foundry_booth_video/.render-video
