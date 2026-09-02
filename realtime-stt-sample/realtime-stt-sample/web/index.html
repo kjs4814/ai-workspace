@@ -1,0 +1,68 @@
+<!doctype html>
+<html lang="ko">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>RAG Suite 실시간 STT</title>
+  <link rel="stylesheet" href="/static/style.css" />
+</head>
+<body>
+  <header>
+    <h1>실시간 음성 전사</h1>
+    <p class="sub">whisper-large-v3 · VAD 분절 + growing window 잠정 표시</p>
+  </header>
+
+  <main>
+    <section class="panel controls">
+      <button id="btn-start" class="primary">녹음 시작</button>
+      <button id="btn-stop" disabled>정지</button>
+      <button id="btn-clear">지우기</button>
+
+      <label class="toggle">
+        <input type="checkbox" id="interim-toggle" checked />
+        <span>잠정 결과 표시 (growing window)</span>
+      </label>
+
+      <div class="meter" aria-label="입력 레벨">
+        <div class="meter-fill" id="meter"></div>
+        <span class="vad-dot" id="vad-dot" title="발화 감지"></span>
+      </div>
+    </section>
+
+    <section class="panel transcript-panel">
+      <div class="panel-head">
+        <h2>전사</h2>
+        <span id="conn" class="badge">연결 안 됨</span>
+      </div>
+      <div id="transcript" class="transcript">
+        <p class="placeholder">녹음을 시작하면 여기에 표시됩니다.</p>
+      </div>
+    </section>
+
+    <section class="panel">
+      <div class="panel-head"><h2>측정값</h2></div>
+      <div class="stats" id="stats">
+        <div class="stat"><span class="k">확정 호출</span><span class="v" id="s-final">0</span></div>
+        <div class="stat"><span class="k">잠정 호출</span><span class="v" id="s-interim">0</span></div>
+        <div class="stat"><span class="k">평균 지연</span><span class="v" id="s-lat">0 ms</span></div>
+        <div class="stat"><span class="k">p95 지연</span><span class="v" id="s-p95">0 ms</span></div>
+        <div class="stat"><span class="k">총 토큰</span><span class="v" id="s-tok">0</span></div>
+        <div class="stat"><span class="k">확정 토큰</span><span class="v" id="s-ftok">0</span></div>
+        <div class="stat"><span class="k">전송 오디오</span><span class="v" id="s-audio">0 s</span></div>
+        <div class="stat"><span class="k">차단 세그먼트</span><span class="v" id="s-drop">0</span></div>
+      </div>
+      <p class="note" id="cost-note">
+        잠정 표시를 켜면 같은 오디오를 여러 번 전사하므로 토큰이 배로 늘어난다.
+        배율은 녹음 중 갱신된다.
+      </p>
+    </section>
+
+    <section class="panel log-panel">
+      <div class="panel-head"><h2>이벤트 로그</h2></div>
+      <div id="log" class="log"></div>
+    </section>
+  </main>
+
+  <script src="/static/app.js"></script>
+</body>
+</html>
