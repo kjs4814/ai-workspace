@@ -1,0 +1,439 @@
+<ac:structured-macro ac:name="info" ac:schema-version="1">
+  <ac:rich-text-body>
+    <p><strong>문서 버전</strong> v1.2 &#160;|&#160; <strong>개정일</strong> 2026-09-02 &#160;|&#160; <strong>주관</strong> AI플랫폼팀</p>
+    <table>
+      <colgroup><col/><col/><col/></colgroup>
+      <tbody>
+        <tr><th>버전</th><th>일자</th><th>내용</th></tr>
+        <tr><td>v1.1</td><td>2026-09-02</td><td>협력사 역할·책임(R&amp;R) 명문화, 비상연락망 신설</td></tr>
+        <tr><td>v1.2</td><td>2026-09-02</td><td>「AI 모델 및 자원 관리 정책」 연계 반영 — 4장 신설, 장애 오분류 방지 기준 및 협력사 EOL 통보 의무 추가</td></tr>
+      </tbody>
+    </table>
+  </ac:rich-text-body>
+</ac:structured-macro>
+
+<ac:structured-macro ac:name="toc" ac:schema-version="1">
+  <ac:parameter ac:name="maxLevel">2</ac:parameter>
+  <ac:parameter ac:name="style">disc</ac:parameter>
+</ac:structured-macro>
+
+<h2>장애 대응 프로세스 도식도</h2>
+
+<ac:structured-macro ac:name="code" ac:schema-version="1">
+  <ac:parameter ac:name="language">text</ac:parameter>
+  <ac:plain-text-body><![CDATA[
+이벤트 관제/인지 → 이상징후 확인 → [영향도 판단]
+                                      │
+                    ┌─────────────────┴─────────────────┐
+              고객 영향 없음                        고객 영향 있음
+                    │                                   │
+            모니터링 지속 및                    컨퍼런스콜 개설 및 전파
+              경과 관찰                                  │
+                                                 [장애 유형 분류]
+                                                        │
+                    ┌───────────┬───────────┬───────────┴────────────┐
+                HW/GPU/NW   Managed KS     DBaaS          App / API / Model
+                    │           │            │                      │
+             인프라 운영조직  Managed KS   DBaaS 연계         AI플랫폼팀 대응
+                  연계          연계          │                      │
+                    └───────────┴────────────┴──────────────────────┘
+                                        │
+                                    복구 조치
+                                        │
+                                 서비스 정상화 확인
+  ]]></ac:plain-text-body>
+</ac:structured-macro>
+
+<h3>장애 유형별 대응 매트릭스</h3>
+
+<table>
+  <colgroup><col/><col/><col/><col/><col/></colgroup>
+  <tbody>
+    <tr>
+      <th>구분</th><th>주요 대상</th><th>대표 증상</th><th>1차 판단 포인트</th><th>주관 대응</th>
+    </tr>
+    <tr>
+      <td><strong>HW/인프라 장애</strong></td>
+      <td>GPU 서버, NIC, 스토리지, 전원, 호스트</td>
+      <td>API 미응답, 노드 다운, GPU unavailable</td>
+      <td>노드 접속 여부, GPU 상태, 호스트 상태</td>
+      <td>Cloud HW운영팀 + AI플랫폼팀</td>
+    </tr>
+    <tr>
+      <td><strong>Managed KS 장애</strong></td>
+      <td>K8s Cluster, Ingress, Pod Scheduling</td>
+      <td>Pod Pending, CrashLoop, Ingress 장애</td>
+      <td>Pod 상태, Node 상태, Ingress/LB 경로</td>
+      <td>Container Service팀 + AI플랫폼팀</td>
+    </tr>
+    <tr>
+      <td><strong>DBaaS 장애</strong></td>
+      <td>MariaDB 인스턴스, 연결 세션, Failover</td>
+      <td>DB 연결 실패, Query timeout</td>
+      <td>DB endpoint 연결, failover 여부, 세션 상태</td>
+      <td>Data Service팀 + AI플랫폼팀</td>
+    </tr>
+    <tr>
+      <td><strong>네트워크/LB/WAF 장애</strong></td>
+      <td>LB, 방화벽, 정책, DNS</td>
+      <td>외부 호출 실패, 일부 경로만 단절</td>
+      <td>LB health, WAF 정책, 방화벽/포트</td>
+      <td>Cloud NW운영팀 + AI플랫폼팀</td>
+    </tr>
+    <tr>
+      <td><strong>애플리케이션 장애</strong></td>
+      <td>Gateway, Controller, API, Redis, Kafka</td>
+      <td>특정 API 오류율 증가, 지연, 일부 기능 불능</td>
+      <td>오류로그, 최근 배포, 내부 의존성 상태</td>
+      <td>AI플랫폼팀</td>
+    </tr>
+    <tr>
+      <td><strong>모델/엔진 장애</strong></td>
+      <td>Parser, Embedding, Text Generation, Vector DB</td>
+      <td>추론 실패, 성능 급감, 품질 이상</td>
+      <td>모델 프로세스, GPU 점유, 모델 엔드포인트, <strong>모델 Lifecycle 상태(Active/Legacy/EOL)</strong></td>
+      <td>AI플랫폼팀 + 협력사<br/>(업스테이지, 디노티시아, 파수)</td>
+    </tr>
+    <tr>
+      <td><strong>용량 부족</strong></td>
+      <td>모델 Replica, 컨테이너</td>
+      <td>Latency 급증, Throttling, 큐 대기 증가</td>
+      <td><strong>SLA 사용률</strong>, Replica 수, 증설 이력</td>
+      <td>AI플랫폼팀</td>
+    </tr>
+  </tbody>
+</table>
+
+<h2>1. 표준 장애 대응 프로세스</h2>
+
+<p>기본적인 장애 대응</p>
+<ul>
+  <li><strong>이상징후 대응</strong> : 이벤트 관제 및 인지 ➔ 이상징후 1차 판단 및 대응</li>
+  <li><strong>장애 대응</strong> : 유관 부서 및 협력사 장애 전파 ➔ 자동/수동 장애 복구 조치</li>
+  <li><strong>장애 후속 대응</strong> : 장애 원인 분석 및 재발 방지 대책 수립 ➔ 최종 장애 보고</li>
+</ul>
+
+<h2>2. 레이어별 운영 및 장애 복구 방안</h2>
+
+<p>kt cloud AI API는 하드웨어(GPU/CPU), 컨테이너(Pod/Node), 관리형 DB(DBaaS)가 결합된 아키텍처로, 각 레이어 특성에 맞춘 복구 체계를 갖춰야 함.</p>
+
+<h3>① 하드웨어 및 인프라 (IaaS &amp; Network)</h3>
+<ul>
+  <li><strong>운영 환경</strong>
+    <ul>
+      <li>DX-M1(목동) 존 Openstack 기반, A100 GPU</li>
+      <li>DX-G(천안) 존 Openstack 기반, A100 GPU</li>
+      <li>DX-YS-G(용산) 존 Openstack 기반, H100 GPU</li>
+    </ul>
+  </li>
+  <li><strong>모니터링</strong> : GPU 다운, 사용률 등 리소스, 서비스 API 실시간 모니터링</li>
+  <li><strong>장애 복구</strong> : 물리적 H/W 장애 발생 시 1선(TechCenter) 1차 진단 후, 2선(AI플랫폼팀 및 인프라/NW 운영팀)으로 이관하여 노드 점검 및 인프라 복구 진행
+    <ul>
+      <li>서비스 EndPoint 단 장애 발생 시 AI플랫폼팀 자체 복구 진행</li>
+    </ul>
+  </li>
+</ul>
+
+<h3>② kt cloud 플랫폼 연계 영역 (Managed KS / DBaaS)</h3>
+
+<p><strong>컨테이너 클러스터 (Pod/Node)</strong></p>
+<ul>
+  <li><strong>자동 복구</strong> : Pod 또는 Node 단위 장애 감지 시 자동 재시작 및 재스케줄링 수행</li>
+  <li><strong>가용성 확보</strong> : Master Node 및 Ingress HA(고가용성) 구성을 통한 Failover 지원으로 서비스 영향도 최소화 (무중단 우선)</li>
+</ul>
+
+<p><strong>DBaaS for MariaDB &amp; Object Storage</strong></p>
+<ul>
+  <li><strong>운영 대상</strong> : RAG Suite용 Ledger DB, Master Node DB 등</li>
+  <li><strong>장애 복구 및 백업</strong> : DBaaS 기본 정책에 따른 DB 인스턴스 백업 및 Object Storage 연계 백업 활용. 장애 시 백업 데이터를 통한 수동 복구 (고객 전용 Vector DB VM은 고객 자체 로컬/오브젝트 스토리지 백업 활용)</li>
+</ul>
+
+<h3>③ kt cloud AI API 서비스 영역 (RAG Suite, Vector DB API)</h3>
+<ul>
+  <li><strong>운영 환경</strong> : Parser, Embedding, Text Generation(LLM) API, Kafka(Event Stream), Redis</li>
+  <li><strong>모니터링</strong> : Token/sec, Latency(API 지연), 주요 에러 코드, DB Query 실패 알람 (Syslog, Kafka Event)</li>
+  <li><strong>장애 복구</strong>
+    <ul>
+      <li>1차 복구 : 컨테이너(App) 수동 재기동 및 네트워크 세션 확인</li>
+      <li>2차 복구 : 로그 분석 및 스테이징/개발(Dev) 클러스터를 활용한 DR 백업 복구 검증</li>
+    </ul>
+  </li>
+</ul>
+
+<h2>3. 네트워크 통제 및 데이터 보안 대응 체계</h2>
+
+<p>네트워크 접근 통제와 데이터 보호 절차를 병행하여 운영</p>
+
+<h3>① 네트워크 접근 제어 (TAG 기반 화이트리스트)</h3>
+<ul>
+  <li><strong>네트워크 흐름</strong> : DMZ LB ➔ Ingress (사설망) ➔ Gateway ➔ 내부 AI API (Parser, Embedding 등)</li>
+  <li><strong>접근 정책</strong> : 클러스터 내외부 통신은 기본 차단을 원칙으로 하며, 보안성 검토를 거친 TAG 기반 접근 제어를 통해서만 허가된 트래픽의 접속을 허용</li>
+  <li><strong>장애/보안 이벤트 대응</strong> : 비정상적인 접근 시도나 라우팅 오류 알람(Syslog 등) 발생 시, TAG 정책 정합성을 점검하고 인바운드 룰 복구</li>
+</ul>
+
+<h2>4. 모델 Lifecycle 및 자원 관리 연계</h2>
+
+<ac:structured-macro ac:name="note" ac:schema-version="1">
+  <ac:rich-text-body>
+    <p>상세 기준은 별도 문서 「kt cloud AI API — AI 모델 및 자원 관리 정책」을 따르며, 본 장은 <strong>장애 대응 관점의 연계 사항</strong>만 규정한다.</p>
+  </ac:rich-text-body>
+</ac:structured-macro>
+
+<h3>① 모델 상태와 장애 판단 기준</h3>
+
+<table>
+  <colgroup><col/><col/><col/><col/></colgroup>
+  <tbody>
+    <tr><th>상태</th><th>정의</th><th>허용 동작</th><th>차단 동작</th></tr>
+    <tr><td><strong>Active</strong></td><td>정상 지원</td><td>전 기능 사용 가능</td><td>–</td></tr>
+    <tr><td><strong>Legacy</strong></td><td>지원 종료 예정 (최소 3개월)</td><td>기존 Endpoint API 호출</td><td>신규 Endpoint 바인딩, Agent 생성, Fine-tuning 생성</td></tr>
+    <tr><td><strong>EOL</strong></td><td>지원 종료</td><td>–</td><td>신규 사용 및 기존 API 호출 전면 차단</td></tr>
+  </tbody>
+</table>
+
+<ac:structured-macro ac:name="warning" ac:schema-version="1">
+  <ac:parameter ac:name="title">장애 오분류 방지 기준</ac:parameter>
+  <ac:rich-text-body>
+    <p>정책상 제한으로 발생한 호출 실패는 <strong>장애가 아니다.</strong> 아래 케이스는 장애 프로세스를 개시하지 않고 고객 안내로 종결한다.</p>
+  </ac:rich-text-body>
+</ac:structured-macro>
+
+<table>
+  <colgroup><col/><col/><col/></colgroup>
+  <tbody>
+    <tr><th>증상</th><th>판단</th><th>조치</th></tr>
+    <tr><td><code>MODEL_EOL</code> 오류 코드 반환</td><td>정책상 정상 동작</td><td>대체 모델 안내, 장애 미해당</td></tr>
+    <tr><td>Legacy 모델에 신규 Endpoint 바인딩 실패</td><td>정책상 정상 제한</td><td>정책 안내, 장애 미해당</td></tr>
+    <tr><td>Legacy 기반 모델의 Fine-tuning 생성 실패</td><td>정책상 정상 제한</td><td>정책 안내, 장애 미해당</td></tr>
+    <tr><td>EOL 모델을 사용하는 Agent 동작 실패</td><td>정책상 정상 제한</td><td>고객 재배포 안내, 장애 미해당</td></tr>
+  </tbody>
+</table>
+
+<p><strong>1차 판단 순서</strong></p>
+<ol>
+  <li>반환 오류 코드 확인 (<code>MODEL_EOL</code> 등 정책성 코드 여부)</li>
+  <li>해당 모델의 Lifecycle 상태 조회 (Active / Legacy / EOL)</li>
+  <li>정책성 제한이면 → 고객 안내로 종결</li>
+  <li>정책성 제한이 아니면 → 모델/엔진 장애 프로세스 개시</li>
+</ol>
+
+<h3>② SLA 사용률 기반 용량 관리 (장애 예방)</h3>
+
+<ac:structured-macro ac:name="panel" ac:schema-version="1">
+  <ac:parameter ac:name="bgColor">#F4F5F7</ac:parameter>
+  <ac:rich-text-body>
+    <p><strong>SLA 사용률(%)</strong> = 시간당 총 Token 사용량 ÷ (Replica 1개당 시간당 처리 가능 Token × 현재 Replica 수) × 100</p>
+  </ac:rich-text-body>
+</ac:structured-macro>
+
+<table>
+  <colgroup><col/><col/><col/></colgroup>
+  <tbody>
+    <tr><th>조건</th><th>조치</th><th>장애 대응 연계</th></tr>
+    <tr>
+      <td>최근 7일 SLA 사용률 <strong>70% 이상</strong></td>
+      <td>컨테이너 증설 대상 지정 → 내부 협의 후 증설</td>
+      <td><strong>이상징후로 관제 등록.</strong> 임계치 도달 시 용량 부족 장애 예방을 위한 선제 증설 검토</td>
+    </tr>
+    <tr>
+      <td>최근 14일 SLA 사용률 <strong>10% 미만</strong></td>
+      <td>컨테이너 축소 대상 지정 → 내부 협의 후 감축</td>
+      <td>축소 후 트래픽 급증 대비 롤백(재증설) 기준 사전 정의</td>
+    </tr>
+  </tbody>
+</table>
+
+<ul>
+  <li>대상: <strong>출시 6개월 이후 모델</strong></li>
+  <li>증설/축소는 인프라 여건 고려하여 <strong>내부 협의 후 결정</strong></li>
+  <li>SLA 사용률 임계치 초과 알람은 표준 장애 대응 프로세스의 <strong>「이벤트 관제 및 인지」 단계</strong>에 포함한다</li>
+</ul>
+
+<h3>③ 지원 종료 및 긴급 차단 시 대응</h3>
+
+<p><strong>정상 EOL 절차 (사전 안내)</strong></p>
+
+<table>
+  <colgroup><col/><col/></colgroup>
+  <tbody>
+    <tr><th>시점</th><th>안내 방식</th></tr>
+    <tr><td>EOL <strong>3개월 전</strong></td><td>콘솔 공지 및 팝업</td></tr>
+    <tr><td>EOL <strong>1개월 전</strong></td><td>콘솔 + 이메일 + 문자</td></tr>
+    <tr><td>EOL <strong>15일 전</strong></td><td>콘솔 + 이메일 + 문자 (최종 안내)</td></tr>
+    <tr><td>EOL <strong>당일</strong></td><td>지원 종료 적용</td></tr>
+  </tbody>
+</table>
+
+<p><strong>긴급 지원 종료 (유예기간 미적용)</strong></p>
+<p>아래 사유 발생 시 유예기간 없이 즉시 사용이 제한될 수 있다.</p>
+<ul>
+  <li>보안 취약점으로 인한 긴급 차단</li>
+  <li>법률 또는 규제 위반 가능성</li>
+  <li>라이선스 계약 종료</li>
+  <li>모델 공급자의 즉시 서비스 중단 요청</li>
+  <li>서비스 안정성에 영향을 주는 중대한 장애</li>
+</ul>
+
+<p><strong>장애 대응 프로세스 연계</strong> : 긴급 차단은 고객 영향이 발생하므로 표준 장애 대응 프로세스를 준용한다.</p>
+<ol>
+  <li>사유 인지 즉시 <strong>컨퍼런스콜 개설 및 전파</strong> (1장 프로세스 준용)</li>
+  <li>긴급 공지 발송 (콘솔 + 이메일 + 문자 동시)</li>
+  <li>차단 조치 시행 및 영향 범위 파악</li>
+  <li>대체 모델 안내 및 고객 문의 대응 체계 가동</li>
+  <li>사후 보고서 작성 (사유, 영향 고객 수, 대응 경과)</li>
+</ol>
+
+<h3>④ Endpoint 마이그레이션 — 책임 범위</h3>
+<ul>
+  <li><strong>자동 마이그레이션은 지원하지 않는다.</strong> 모델별 지원 기능(Reasoning, Tool Calling, Structured Output 등)과 응답 형식이 달라 자동 전환 시 애플리케이션 오류, 응답 품질 저하, 예상치 못한 비용 증가가 발생할 수 있다.</li>
+  <li>kt cloud는 대체 모델 정보와 가이드를 제공하며, <strong>실제 검증 및 전환은 고객 책임</strong>이다.</li>
+  <li>마이그레이션 미완료 상태에서 EOL 도래로 발생한 서비스 중단은 <strong>장애로 분류하지 않는다.</strong></li>
+</ul>
+
+<h2>5. 협력사 역할 및 책임 (R&amp;R)</h2>
+
+<h3>① 협력사별 담당 영역</h3>
+
+<table>
+  <colgroup><col/><col/><col/><col/></colgroup>
+  <tbody>
+    <tr>
+      <th>협력사</th><th>담당 컴포넌트</th><th>책임 범위</th><th>대응 방식</th>
+    </tr>
+    <tr>
+      <td><strong>업스테이지</strong></td>
+      <td>Document Parser, Embedding Model, Text Generation(LLM)</td>
+      <td>모델 추론 실패·응답 지연·출력 품질 이상에 대한 원인 분석 및 패치 제공, 모델 버전·가중치 배포, 모델 스펙 및 리소스 요구사항 고지</td>
+      <td>원격 기술지원 + 패치/버전 제공</td>
+    </tr>
+    <tr>
+      <td><strong>디노티시아</strong></td>
+      <td>Vector DB 엔진</td>
+      <td>색인·검색 실패, 인덱스 손상·정합성 오류, 검색 성능 저하에 대한 원인 분석 및 조치, 엔진 버전 제공 및 마이그레이션 지원</td>
+      <td>원격 기술지원 + 패치/버전 제공</td>
+    </tr>
+    <tr>
+      <td><strong>파수</strong></td>
+      <td>문서 보안 연계 모듈 <ac:structured-macro ac:name="status" ac:schema-version="1"><ac:parameter ac:name="colour">Yellow</ac:parameter><ac:parameter ac:name="title">확정 필요</ac:parameter></ac:structured-macro></td>
+      <td>문서 보안·권한 연계 기능 장애 원인 분석 및 조치</td>
+      <td>원격 기술지원</td>
+    </tr>
+  </tbody>
+</table>
+
+<ac:structured-macro ac:name="warning" ac:schema-version="1">
+  <ac:parameter ac:name="title">협력사 확인 요청 사항</ac:parameter>
+  <ac:rich-text-body>
+    <p>위 표의 담당 컴포넌트·책임 범위가 실제 계약 및 제공 범위와 일치하는지 검토 후 회신 바랍니다. 특히 <strong>파수</strong>의 담당 범위는 미확정 상태로, 담당 모듈과 책임 범위를 명시해 주시기 바랍니다.</p>
+  </ac:rich-text-body>
+</ac:structured-macro>
+
+<h3>② 협력사 공통 의무 사항</h3>
+
+<ol>
+  <li><strong>비상연락망 제출 및 최신화</strong> — 주/부 담당자 2인 이상, 인사이동 발생 시 즉시 갱신 (정기 갱신 분기 1회)</li>
+  <li><strong>장애 회신 SLA 준수</strong>
+    <ul>
+      <li>최초 응답(접수 확인) : 30분 이내</li>
+      <li>1차 원인 회신 : 4시간 이내</li>
+      <li><em>등급별 차등 적용 여부는 협의 후 확정</em></li>
+    </ul>
+  </li>
+  <li><strong>근본 원인 분석 보고서(RCA) 제출</strong> — 장애 종료 후 5영업일 이내</li>
+  <li><strong>정기 점검·버전 업그레이드 사전 고지</strong> — 작업 2주 전 통보, 서비스 영향도 및 롤백 방안 포함</li>
+  <li><strong>원격 접속 통제 준수</strong> — 접속 계정 및 경로 사전 등록, TAG 기반 화이트리스트 정책 준수, 작업 시 AI플랫폼팀 입회 필수</li>
+  <li><strong>알려진 결함(Known Issue) 및 취약점 공유</strong> — 자사 제품에서 확인된 결함·보안 취약점 발견 시 지체 없이 통보</li>
+  <li><strong>모델 지원 종료(EOL) 사전 통보</strong> — 공급 모델의 지원 종료 계획 확정 시 <strong>최소 4개월 전</strong> 서면 통보
+    <ul>
+      <li>근거: 당사 정책상 Legacy 최소 3개월 유지 + 고객 사전 안내(3개월 전 공지) 이행에 필요한 리드타임</li>
+      <li>통보 시 포함 사항: 지원 종료 예정일, 대체 권장 모델, API 스펙 변경 여부, 마이그레이션 가이드</li>
+      <li><em>통보 기한은 협의 후 확정</em></li>
+    </ul>
+  </li>
+  <li><strong>모델 성능 스펙 제공</strong> — SLA 사용률 산정 근거가 되는 Replica당 Input/Output TPS 값을 제공하고, 모델 버전 변경 시 갱신</li>
+</ol>
+
+<h3>③ 협력사 장애 전파 및 에스컬레이션 절차</h3>
+
+<table>
+  <colgroup><col/><col/><col/></colgroup>
+  <tbody>
+    <tr><th>단계</th><th>수행 주체</th><th>내용</th></tr>
+    <tr><td>1</td><td>AI플랫폼팀</td><td>1차 판단 → 모델/엔진 영역 장애로 분류 (Lifecycle 상태 확인 선행)</td></tr>
+    <tr><td>2</td><td>AI플랫폼팀</td><td>해당 협력사 담당자 유선 전파 (동시에 메일·메신저로 기록 남김)</td></tr>
+    <tr><td>3</td><td>협력사</td><td>30분 내 접수 회신, 원격 합동 분석 착수</td></tr>
+    <tr><td>4</td><td>협력사 + AI플랫폼팀</td><td>조치안 협의 및 적용 (운영 반영은 AI플랫폼팀 승인 후 수행)</td></tr>
+    <tr><td>5</td><td>AI플랫폼팀</td><td>서비스 정상화 확인 및 장애 종료 선언</td></tr>
+    <tr><td>6</td><td>협력사</td><td>RCA 및 재발 방지 대책 제출 (5영업일 이내)</td></tr>
+  </tbody>
+</table>
+
+<p><strong>에스컬레이션 원칙</strong> : 1차 담당자 유선 미응답 시 5분 간격 재시도, 3회 미응답 시 2차 담당자 → 협력사 관리 책임자 순으로 상향</p>
+
+<h2>6. 비상연락망</h2>
+
+<h3>① kt cloud AI플랫폼팀 (주관 부서)</h3>
+
+<table>
+  <colgroup><col/><col/><col/><col/><col/></colgroup>
+  <tbody>
+    <tr><th>구분</th><th>성명</th><th>연락처</th><th>이메일</th><th>역할</th></tr>
+    <tr>
+      <td>주담당</td><td>김재순</td><td>010-2935-4814</td><td>jason0706.kim@kt.com</td>
+      <td>장애 접수·총괄, 유관 부서 및 협력사 전파, 대외 보고</td>
+    </tr>
+    <tr>
+      <td>부담당</td><td>박종환</td><td>010-7101-0397</td><td>jonghwan.park94@kt.com</td>
+      <td>기술 조치 및 복구 수행, 로그·원인 분석</td>
+    </tr>
+  </tbody>
+</table>
+
+<h3>② 유관 부서 연락 체계</h3>
+
+<table>
+  <colgroup><col/><col/><col/></colgroup>
+  <tbody>
+    <tr><th>장애 유형</th><th>담당 조직</th><th>연락처</th></tr>
+    <tr><td>HW/인프라 (1선)</td><td>TechCenter</td><td><ac:structured-macro ac:name="status" ac:schema-version="1"><ac:parameter ac:name="colour">Grey</ac:parameter><ac:parameter ac:name="title">기입 필요</ac:parameter></ac:structured-macro></td></tr>
+    <tr><td>HW/인프라 (2선)</td><td>Cloud HW운영팀</td><td><ac:structured-macro ac:name="status" ac:schema-version="1"><ac:parameter ac:name="colour">Grey</ac:parameter><ac:parameter ac:name="title">기입 필요</ac:parameter></ac:structured-macro></td></tr>
+    <tr><td>Managed KS</td><td>Container Service팀</td><td><ac:structured-macro ac:name="status" ac:schema-version="1"><ac:parameter ac:name="colour">Grey</ac:parameter><ac:parameter ac:name="title">기입 필요</ac:parameter></ac:structured-macro></td></tr>
+    <tr><td>DBaaS</td><td>Data Service팀</td><td><ac:structured-macro ac:name="status" ac:schema-version="1"><ac:parameter ac:name="colour">Grey</ac:parameter><ac:parameter ac:name="title">기입 필요</ac:parameter></ac:structured-macro></td></tr>
+    <tr><td>네트워크/LB/WAF</td><td>Cloud NW운영팀</td><td><ac:structured-macro ac:name="status" ac:schema-version="1"><ac:parameter ac:name="colour">Grey</ac:parameter><ac:parameter ac:name="title">기입 필요</ac:parameter></ac:structured-macro></td></tr>
+  </tbody>
+</table>
+
+<h3>③ 협력사 비상연락망</h3>
+
+<ac:structured-macro ac:name="note" ac:schema-version="1">
+  <ac:rich-text-body>
+    <p>협력사 제출 후 기입. 주/부 담당자 각 1인 이상 필수.</p>
+  </ac:rich-text-body>
+</ac:structured-macro>
+
+<table>
+  <colgroup><col/><col/><col/><col/><col/><col/></colgroup>
+  <tbody>
+    <tr><th>협력사</th><th>구분</th><th>성명</th><th>연락처</th><th>이메일</th><th>대응 가능 시간</th></tr>
+    <tr><td>업스테이지</td><td>주담당</td><td></td><td></td><td></td><td></td></tr>
+    <tr><td>업스테이지</td><td>부담당</td><td></td><td></td><td></td><td></td></tr>
+    <tr><td>디노티시아</td><td>주담당</td><td></td><td></td><td></td><td></td></tr>
+    <tr><td>디노티시아</td><td>부담당</td><td></td><td></td><td></td><td></td></tr>
+    <tr><td>파수</td><td>주담당</td><td></td><td></td><td></td><td></td></tr>
+    <tr><td>파수</td><td>부담당</td><td></td><td></td><td></td><td></td></tr>
+  </tbody>
+</table>
+
+<h3>④ 연락 운영 원칙</h3>
+
+<ul>
+  <li><strong>1차 연락 수단은 유선(전화)</strong> 으로 하며, 전파 내용은 반드시 메일 또는 장애관리 채널에 기록</li>
+  <li>유선 미응답 시 5분 간격 3회 재시도 후 차상위 담당자로 에스컬레이션</li>
+  <li><strong>야간·휴일 대응</strong> : 당직 체계에 따름 <ac:structured-macro ac:name="status" ac:schema-version="1"><ac:parameter ac:name="colour">Grey</ac:parameter><ac:parameter ac:name="title">당직 체계 기입 필요</ac:parameter></ac:structured-macro></li>
+  <li>연락망은 <strong>분기 1회 정기 점검</strong> 하며, 인사이동 발생 시 즉시 갱신</li>
+</ul>
+
+<h2>관련 문서</h2>
+<ul>
+  <li>「kt cloud AI API — AI 모델 및 자원 관리 정책」 — 모델 Lifecycle, EOL 기준, SLA 사용률 산정, 증설·축소 기준 상세</li>
+</ul>
